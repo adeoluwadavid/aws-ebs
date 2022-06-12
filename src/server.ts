@@ -39,7 +39,7 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
       }
       res.status(200).send('Excellent Job')
     }catch(e){
-      throw e
+      res.status(401).send('Invalid Image Url Input')
     }
    
     
