@@ -30,19 +30,17 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
   /**************************************************************************** */
 
   //! END @TODO1
-  app.get('/filteredimage', async (req, res)=>{
+  app.get('/filteredimage', async (req: express.Request, res: express.Response)=>{
     const imageUrl = req && req.query && req.query.image_url
     try{
       const processImage = await filterImageFromURL(imageUrl )
       if(processImage){
         await deleteLocalFiles([processImage])
       }
-      res.status(200).send('Excellent Job')
+      res.status(200).send(processImage)
     }catch(e){
-      res.status(401).send('Invalid Image Url Input')
+      res.sendStatus(422)
     }
-   
-    
   })
   
   // Root Endpoint
